@@ -1,0 +1,57 @@
+#wrap {
+	width:100%;
+}
+#lecture_list {
+	margin: 0 auto;
+	padding: 0;
+	display: inline-block;
+	list-style: none;
+}
+.lecture_item {
+	text-align: center;
+	width: 150px;
+	height: 200px;
+	margin: 3px;
+	padding: 20px;
+	border: 2px solid #C5C5C5;
+	border-radius: 10px;
+	float: left;
+}
+.highlight {
+	border: 2px solid rgb(0, 110, 161);
+}
+.lecture_text {
+	clear: both;
+	float: left;
+}
+.lecture_name {
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+	font-weight: bolder;
+	word-break: keep-all;
+	word-wrap: normal;
+	height: 2em;
+}
+.lecture_code {
+	float: right;
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+}
+.lecture_point {
+	float: right;
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+}
+.lecture_time {
+	float: right;
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+}
+.button{
+	display: block;
+	margin: auto;
+	padding: 10px;
+	width: 200px;
+	border: 2px solid #03A9F4;
+	border-radius: 10px;
+	background-color:#03A9F4;
+	color:#FFFFFF;
+	font-size: 1.5em;
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+}

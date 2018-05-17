@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+	<head>
+		<% include ../global/siteinfo %>
+		<link rel="stylesheet" href="/css/enroll/index.css">
+		<script type="text/javascript">var lecture = <%- JSON.stringify(lecture) %>;</script>
+		<script type="text/javascript" src="/js/enroll/index.js" defer></script>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="content">
+				<% include ../global/header %>
+				<h2>수강신청</h2>
+				<h3>현재 신청된 강의</h3>
+				<p>수업시수 : <strong name="total_time">0</strong>시간</p>
+				<p>수업학점 : <strong name="total_point">0</strong>점</p>
+				<ul id="lecture_list">
+					<% for(let i = 0; i < lecture.length; ++i) { %>
+						<li class="lecture_item" onClick="ToggleItem(this)">
+							<p class="lecture_name"><%= lecture[i].name %></p>
+							<p class="lecture_text">과목코드</p><p class="lecture_code"><%= lecture[i].code %></p>
+							<p class="lecture_text">학점</p><p class="lecture_point"><%= lecture[i].point %></p>
+							<p class="lecture_text">수업시수</p><p class="lecture_time"><%= lecture[i].time %></p>
+						</li>
+					<% } %>
+				</ul>
+				<h3>현재 신청된 강의</h3>
+				<p>수업시수 : <strong name="total_time">0</strong>시간</p>
+				<p>수업학점 : <strong name="total_point">0</strong>점</p>
+				<input type="submit" class="button" onClick="Save()">
+				<% include ../global/footer %>
+			</div>
+		</div>
+	</body>
+</html>

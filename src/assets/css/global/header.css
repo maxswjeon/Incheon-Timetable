@@ -1,0 +1,92 @@
+#title {
+	margin: 0;
+	padding-top: 75px;
+}
+#title_link{
+	color: black;
+	text-decoration: none;
+}
+#content{
+	width: 75%;
+	margin: auto;
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+}
+.description {
+	font-size: 0.95em;
+	line-height: 1.5;
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+}
+.menu_list{
+	padding: 0;
+	height: 75px;
+	list-style-type: none;
+}
+.menu_item{
+	float: left;
+	margin-right: 50px;
+	height: 75px;
+}
+.menu_link{
+	text-decoration: none;
+	color: black;
+}
+.menu_img {
+	float: left;
+	width: 75px;
+	height: 75px;
+}
+.menu_text{
+	margin: 0;
+	float: left;
+	line-height: 75px;
+	vertical-align: middle;
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+	font-weight: bolder;
+}
+@media only screen and (max-width: 768px) {
+	#content {
+		width: 576px;
+	}
+}
+@media only screen and (max-width: 576px) {
+	#content { 
+		width: 100%;
+	}
+	.menu_list {
+		height: 13vw;
+	}
+	.menu_item {
+		height: 13vw;
+	}
+	.menu_img {
+		width: 13vw;
+		height: 13vw;
+	}
+	.menu_text{
+		line-height: 13vw;
+	}
+}
+@media only screen and (max-width: 425px) {
+	.description{
+		font-size : 3.45vw;
+	}
+	.menu_list {
+		height: 26vw;
+	}
+	.menu_link {
+		width: 100%;
+		height: 13vw;
+		display: block;
+	}
+	.menu_item {
+		float: none;
+		margin: auto;
+		width: 100%;
+	}
+}
+/* Verical Responsible */
+@media only screen and (max-height: 750px) {
+	#title {
+		padding-top: 10vh;
+	}
+}

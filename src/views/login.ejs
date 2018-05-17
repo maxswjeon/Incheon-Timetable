@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+	<head>
+		<% include ./global/siteinfo %>
+		<!--Min width: 255px-->
+		<!--Min height: 360px-->
+		<link rel="stylesheet" href="/css/login.css">
+
+		<script src="/js/login.js" defer></script>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="image_container"></div>
+			<div id="login_form">
+				<h2 id="login_title">
+					인천과학예술영재학교<br>
+					시간표 작성 서비스
+				</h2>
+				<input class="input" type="text" placeholder="ID" name="id">
+				<input class="input" type="password" placeholder="PW" name="pw">
+				<input class="input" type="hidden" value="<%= uuid1 %>" name="uuid1">
+				<input class="input" type="hidden" value="<%= uuid2 %>" name="uuid2">
+				<input id="submit" class="button" type="submit" value="Login" onclick="Login()">
+				<%- errormsg  %>
+			</div>
+			<div id="footer">
+				<p class="copyright">
+					Copyright (c) 2018 Jeon Sangwan, Kim Jinju<br>
+					All Rights Reserved
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

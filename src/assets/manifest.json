@@ -1,0 +1,8 @@
+{
+	"short_name" : "SchoolTimetable",
+	"name" : "Timetable Service for Incheon Academy of Science And Arts",
+	"icons" : [
+
+	],
+	"display": "browser"
+}

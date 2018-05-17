@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+	<head>
+		<% include ../global/siteinfo %>
+		<link rel="stylesheet" href="/css/view/index.css">
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="content">
+				<% include ../global/header %>
+				<table>
+					<thead>
+						<tr>
+							<th><th>
+							<th>월</th>
+							<th>화</th>
+							<th>수</th>
+							<th>목</th>
+							<th>금</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for (var i = 0; i < timetable.length; ++i) { %>
+						<tr>
+							<th>
+								<%= timetable[i].period %>교시<br>
+								<%= timetable[i].time %>
+							</th>
+							<th class="<%= timetable[i].mon.style %>">
+								<%= timetable[i].mon.name %><br>
+								<%= timetable[i].mon.room %>
+							</th>
+							<th class="<%= timetable[i].tue.style %>">
+								<%= timetable[i].tue.name %><br>
+								<%= timetable[i].tue.room %>
+							</th>
+							<th class="<%= timetable[i].wed.style %>">
+								<%= timetable[i].wed.name %><br>
+								<%= timetable[i].wed.room %>
+							</th>
+							<th class="<%= timetable[i].thr.style %>">
+								<%= timetable[i].thr.name %><br>
+								<%= timetable[i].thr.room %>
+							</th>
+							<th class="<%= timetable[i].fri.style %>">
+								<%= timetable[i].fri.name %><br>
+								<%= timetable[i].fri.room %>
+							</th>
+						</tr>
+						<% } %>
+					</tbody>
+				</table>
+				<% include ../global/footer %>
+			</div>
+		</div>
+	</body>
+</html>

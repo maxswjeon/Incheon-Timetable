@@ -1,0 +1,95 @@
+#wrap {
+	width:100vw;
+	height: 100%;
+	display: table;
+	position: relative;
+	background-color: #F5F5F5;
+}
+#image_container{
+	width:100%;
+	height:100%;
+	position: relative;
+	background: url("/img/background.png") no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#login_form{
+	position: absolute;
+	top: 150px;
+	padding: 25px;
+	border-radius: 10px;
+	background-color: rgba(255,255,255,0.7);
+}
+#footer{
+	position: absolute;
+	width: 100%;
+	bottom:0px;
+	padding: 10px;
+	box-sizing: border-box;
+	background-color: rgba(255,255,255,0.7);
+}
+#login_title{
+	margin: 0 0 10px 0;
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+}
+.input{
+	width: 100%;
+	padding: 0;
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+}
+.button{
+	width: 100%;
+	border: 2px solid #03A9F4;
+	background-color:#03A9F4;
+	color:#FFFFFF;
+	font-size: 1em;
+	margin: 5px 0 0 0;
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+}
+.copyright {
+	font-size: 0.75em;
+}
+#error {
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+	color : red;
+	margin-bottom: 0;
+	font-weight: bold;
+	font-size: 0.9em;
+}
+@media only screen and (min-width: 587px) {
+	#login_form {
+		width: 336px;
+		right: 100px;
+	}
+}
+@media only screen and (max-width: 586px) {
+	#login_form {
+		width: 336px;
+		left:0;
+		right:0;
+		margin:0 auto;
+	}
+}
+@media only screen and (max-width: 386px) {
+	#login_form{
+		width: 100vw;
+		box-sizing: border-box;
+	}
+}
+@media only screen and (max-width: 300px) {
+	#login_title {
+		font-size: 7.75vw;
+	}
+	#error {
+		font-size: 5vw;
+	}
+}
+
+/* Verical Responsible */
+@media only screen and (max-height: 750px) {
+	#login_form {
+		top: 20%;
+	}
+}

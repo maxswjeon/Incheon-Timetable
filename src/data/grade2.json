@@ -1,0 +1,146 @@
+[
+	{
+		"name" : "(AP) 미적분학",
+		"code" : "A",
+		"point" : 3,
+		"time" : 4
+	},
+	{
+		"name" : "(AP) 일반화학 I",
+		"code" : "B",
+		"point" : 3,
+		"time" : 4
+	},
+	{
+		"name" : "(AP) 일반물리학 I",
+		"code" : "C",
+		"point" : 3,
+		"time" : 4
+	},
+	{
+		"name" : "(AP) 프로그래밍과 문제해결",
+		"code" : "D",
+		"point" : 3,
+		"time" : 4
+	},
+	{
+		"name" : "공학개론",
+		"code" : "E",
+		"point" : 3,
+		"time" : 3
+	},
+	{
+		"name" : "Public Speaking and Presentation",
+		"code" : "F",
+		"point" : 3,
+		"time" : 3
+	},
+	{
+		"name" : "문학",
+		"code" : "G",
+		"point" : 3,
+		"time" : 3
+	},
+	{
+		"name" : "법과 정치",
+		"code" : "H",
+		"point" : 3,
+		"time" : 3
+	},
+	{
+		"name" : "물리학 III",
+		"code" : "I",
+		"point" : 3,
+		"time" : 3
+	},
+	{
+		"name" : "일반생명과학 I",
+		"code" : "J",
+		"point" : 3,
+		"time" : 3
+	},
+	{
+		"name" : "세계지리",
+		"code" : "K",
+		"point" : 3,
+		"time" : 3
+	},
+	{
+		"name" : "영어독해와작문",
+		"code" : "L",
+		"point" : 3,
+		"time" : 3
+	},
+	{
+		"name" : "생활속의 화학",
+		"code" : "M",
+		"point" : 3,
+		"time" : 3
+	},
+	{
+		"name" : "일반생명과학실험 I",
+		"code" : "N",
+		"point" : 1,
+		"time" : 2
+	},
+	{
+		"name" : "일반지구과학 I",
+		"code" : "O",
+		"point" : 3,
+		"time" : 3
+	},
+	{
+		"name" : "자료구조",
+		"code" : "P",
+		"point" : 3,
+		"time" : 3
+	},
+	{
+		"name" : "사회문제와 인문학적 상상력",
+		"code" : "Q",
+		"point" : 3,
+		"time" : 3
+	},
+	{
+		"name" : "음악과 테크놀로지 I",
+		"code" : "R",
+		"point" : 2,
+		"time" : 2
+	},
+	{
+		"name" : "창의적 디자인 II",
+		"code" : "S",
+		"point" : 2,
+		"time" : 2
+	},
+	{
+		"name" : "(AP) 일반화학실험",
+		"code" : "T",
+		"point" : 1,
+		"time" : 2
+	},
+	{
+		"name" : "(AP) 일반물리실험",
+		"code" : "U",
+		"point" : 1,
+		"time" : 2
+	},
+	{
+		"name" : "스포츠과학",
+		"code" : "V",
+		"point" : 1,
+		"time" : 1
+	},
+	{
+		"name" : "스포츠문화",
+		"code" : "W",
+		"point" : 1,
+		"time" : 1
+	},
+	{
+		"name" : "확률과 통계",
+		"code" : "X",
+		"point" : 3,
+		"time" : 3
+	}
+]

@@ -1,0 +1,16 @@
+#wrap {
+	width:100%;
+	height: 100%;
+	display: table;
+}
+.subtitle {
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+}
+.board_item {
+	height: 25px;
+}
+.board_link {
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+	text-decoration: none;
+	color:black;
+}

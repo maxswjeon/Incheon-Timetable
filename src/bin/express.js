@@ -58,7 +58,7 @@ function SetParser() {
 function SetLogger() {
 	app.use(morgan('dev'));
 	app.use(morgan('combined', {
-		stream : fs.createWriteStream(path.join(global.rootPath, 'logs/access.log'))
+		stream : fs.createWriteStream(path.join(global.rootPath, 'logs/access.log'), {flags: 'a'})
 	}));
 }
 

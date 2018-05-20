@@ -1,0 +1,5 @@
+@media only print {
+	#disqus_thread {
+		display: none;
+	}
+}

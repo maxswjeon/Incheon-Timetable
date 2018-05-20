@@ -12,7 +12,7 @@
 	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
 }
 .description {
-	font-size: 0.95em;
+	font-size: 0.85em;
 	line-height: 1.5;
 	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
 }
@@ -49,6 +49,9 @@
 	}
 }
 @media only screen and (max-width: 576px) {
+	body {
+		padding: 0 15px;
+	}
 	#content { 
 		width: 100%;
 	}
@@ -67,8 +70,11 @@
 	}
 }
 @media only screen and (max-width: 425px) {
+	#title {
+		font-size : 7.5vw;
+	}
 	.description{
-		font-size : 3.45vw;
+		font-size : 3vw;
 	}
 	.menu_list {
 		height: 26vw;
@@ -88,5 +94,25 @@
 @media only screen and (max-height: 750px) {
 	#title {
 		padding-top: 10vh;
+	}
+}
+@media print {
+	hr {
+		display: none;
+	}
+	body {
+		padding: 2cm 0;
+	}
+	#title {
+		display: none;
+	}
+	.description {
+		display: none;
+	}
+	.menu_list {
+		display: none;
+	}
+	.button {
+		display: none;
 	}
 }

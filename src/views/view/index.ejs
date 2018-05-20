@@ -3,6 +3,8 @@
 	<head>
 		<% include ../global/siteinfo %>
 		<link rel="stylesheet" href="/css/view/index.css">
+		<script type="text/javascript">var timetable = <%- JSON.stringify(timetable) %>;</script>
+		<script type="text/javascript" src="/js/view/index.js" defer></script>
 	</head>
 	<body>
 		<div id="wrap">
@@ -11,7 +13,7 @@
 				<table>
 					<thead>
 						<tr>
-							<th><th>
+							<th></th>
 							<th>월</th>
 							<th>화</th>
 							<th>수</th>
@@ -22,27 +24,27 @@
 					<tbody>
 						<% for (var i = 0; i < timetable.length; ++i) { %>
 						<tr>
-							<th>
+							<th class="table_title">
 								<%= timetable[i].period %>교시<br>
 								<%= timetable[i].time %>
 							</th>
-							<th class="<%= timetable[i].mon.style %>">
+							<th class="<%= timetable[i].mon.style %> table_content">
 								<%= timetable[i].mon.name %><br>
 								<%= timetable[i].mon.room %>
 							</th>
-							<th class="<%= timetable[i].tue.style %>">
+							<th class="<%= timetable[i].tue.style %> table_content">
 								<%= timetable[i].tue.name %><br>
 								<%= timetable[i].tue.room %>
 							</th>
-							<th class="<%= timetable[i].wed.style %>">
+							<th class="<%= timetable[i].wed.style %> table_content">
 								<%= timetable[i].wed.name %><br>
 								<%= timetable[i].wed.room %>
 							</th>
-							<th class="<%= timetable[i].thr.style %>">
+							<th class="<%= timetable[i].thr.style %> table_content">
 								<%= timetable[i].thr.name %><br>
 								<%= timetable[i].thr.room %>
 							</th>
-							<th class="<%= timetable[i].fri.style %>">
+							<th class="<%= timetable[i].fri.style %> table_content">
 								<%= timetable[i].fri.name %><br>
 								<%= timetable[i].fri.room %>
 							</th>
@@ -50,6 +52,7 @@
 						<% } %>
 					</tbody>
 				</table>
+				<a onclick="window.print()" class="button">Print</a>
 				<% include ../global/footer %>
 			</div>
 		</div>

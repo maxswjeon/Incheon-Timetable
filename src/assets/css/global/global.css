@@ -4,3 +4,7 @@
 
 @import "header.css";
 @import "footer.css";
+
+@media only print {
+	@page { margin: 0; }
+}

@@ -1,11 +1,9 @@
-const config = require('../config/config');
-
 const Promise = require('bluebird');
 const crypto = require('crypto');
 
-const iteritation = config.hash.iteritation || 100000;
-const bits = config.hash.bits || 512;
-const digest = config.hash.digest || 'sha512';
+const iteritation = global.hash.iteritation || 100000;
+const bits = global.hash.bits || 512;
+const digest = global.hash.digest || 'sha512';
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;

@@ -23,19 +23,19 @@ router.get('/view/', (req, res) => {
 						name : 'Test'
 					},
 					tue : {
-						style : 'red',
+						style : 'salmon',
 						name : 'Test'
 					},
 					wed : {
-						style : 'red',
+						style : 'pink',
 						name : 'Test'
 					},
 					thr : {
-						style : 'red',
+						style : 'orange',
 						name : 'Test'
 					},
 					fri : {
-						style : 'red',
+						style : 'yellow',
 						name : 'Test'
 					}
 				},
@@ -43,11 +43,35 @@ router.get('/view/', (req, res) => {
 					period : '2',
 					time : '9:00 ~ 10:00',
 					mon : {
-						style : 'red',
+						style : 'yellowgreen',
 						name : 'Test'
 					},
 					tue : {
-						style : 'red',
+						style : 'green',
+						name : 'Test'
+					},
+					wed : {
+						style : 'skyblue',
+						name : 'Test'
+					},
+					thr : {
+						style : 'blue',
+						name : 'Test'
+					},
+					fri : {
+						style : 'purple',
+						name : 'Test'
+					}
+				},
+				{
+					period : '3',
+					time : '10:00 ~ 11:00',
+					mon : {
+						style : 'blue',
+						name : 'Test'
+					},
+					tue : {
+						style : 'purple',
 						name : 'Test'
 					},
 					wed : {

@@ -1,7 +1,16 @@
 const path = require('path');
+const fs = require('fs');
 
 //Logger modules
 const winston = require('winston');
+
+//Check Log Folder and Create it if doesn't Exist
+try {
+	fs.accessSync(path.join(global.rootPath, 'logs'), fs.constants.R_OK | fs.constants.W_OK);
+}
+catch (err) {
+	fs.mkdirSync(path.join(global.rootPath, 'logs'));
+}
 
 //Winston Configuration
 winston.configure({

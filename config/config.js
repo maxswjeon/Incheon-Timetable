@@ -10,4 +10,8 @@ module.exports = {
 		bits: 512,
 		digest: 'sha512',
 	},
+	data : {
+		grade2 : 'data/grade2.xlsx',
+		grade3 : 'data/grade3.xlsx',
+	}
 };

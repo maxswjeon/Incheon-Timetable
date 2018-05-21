@@ -1,7 +1,6 @@
-const Promise = require('bluebird');
 const crypto = require('crypto');
 
-const iteritation = global.hash.iteritation || 100000;
+const iteritations = global.hash.iteritation || 100000;
 const bits = global.hash.bits || 512;
 const digest = global.hash.digest || 'sha512';
 
@@ -9,55 +8,64 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const User = new Schema({
-	userid: String,
-	name: String,
-	salt: String,
-	pass: String,
-	schoolnum : Number
+	userid : String,
+	salts : [String],
+	pass : [String],
+	schoolnum : Number,
+	lectures : [String]
 });
 
-User.statics.create = function(userid, name, schoolnum, salt, pass) {
+User.statics.create = function(userid, salts, pass, schoolnum) {
 	const user = new this({
 		userid,
-		name,
+		salts,
+		pass,
 		schoolnum,
-		salt,
-		pass
+		lectures : null
 	});
-
 	return user.save();
 };
 
 User.statics.findByUserID = function(userid) {
-	return this.find({
+	return this.findOne({
 		userid
 	}).exec();
 };
 
-User.statics.findByName = function(name) {
-	return this.find({
-		name
-	}).exec();
-};
-
-User.methods.updatePass = function(salt, pass) {
-	this.salt = salt;
-	this.pass = pass;
-
-	return this.save();
-};
-
-User.methods.verify = function (pass) {
+User.statics.checkDuplicateUserID = function(userid) {
 	return new Promise((resolve, reject) => {
-		crypto.pbkdf2(Buffer.from(this.salt, 'hex'), pass, iteritation, bits, digest, (err, key) => {
+		this.find({ userid }, (err, users) => {
 			if (err) {
-				reject(err);
+				reject({
+					status : 500,
+					error : err
+				});
+				return;
 			}
-			else {
-				resolve(this.pass === key.toString('hex'));
+
+			if (users.length !== 0) {
+				reject({
+					status : 400,
+					error : err
+				});
+				return;
 			}
+
+			resolve();
 		});
 	});
+	
+};
+
+User.methods.updatePass = function(pass) {
+	this.salts[0] = crypto.randomBytes(bits).toString('hex');
+	this.salts[1] = crypto.randomBytes(bits).toString('hex');
+
+	for (let i = 0; i < 2 ; ++i) {
+		this.pass[i] = crypto.pbkdf2Sync(pass, this.salt[i], iteritations, bits, digest);
+	}
+
+	return this.save();
 };
 
 module.exports = mongoose.model('User', User);

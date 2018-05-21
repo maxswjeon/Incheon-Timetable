@@ -1,5 +1,10 @@
-const Promise = require('bluebird');
+const path = require('path');
 const crypto = require('crypto');
+
+const saltBits = global.salt.bits || 512;
+const iteritations = global.hash.iteritation || 100000;
+const bits = global.hash.bits || 512;
+const digest = global.hash.digest || 'sha512';
 
 //Logger modules
 const winston = require('winston');
@@ -7,91 +12,73 @@ const winston = require('winston');
 const express = require('express');
 const router = express.Router();
 
-const User = require('../../schemas/user');
+const User = require(path.join(global.rootPath, 'src/schemas/user'));
 
 router.post('/user/signup', (req, res) => {
 
-	const iteritation = req.app.locals.config.hash.iteritation || 100000;
-	const bits = req.app.locals.config.hash.bits || 512;
-	const digest = req.app.locals.config.hash.digest || 'sha512';
+	const { userid, pass, schoolnum } = req.body;
 
-	const { userid, name, pass, schoolnum } = req.body;
+	const salts = Array(2);
+	const hashes = Array(2);
 
-	let _user = null;
+	//Save As Hash
+	const sha512Generator = crypto.createHash('sha512');
+	sha512Generator.update(userid);
+	const useridHash = sha512Generator.digest('hex');
 
-	const checkID = (users) => {
-		if (users.length === 0) {
-			return Promise.resolve();
-		}
-		else {
-			return Promise.reject('Duplicate UserID');
-		}
-	};
-
-	const findName = () => {
-		return User.findByName(name);
-	};
-
-	const checkName = (users) => {
-		if (users.length === 0) {
-			return Promise.resolve();
-		}
-		else {
-			return Promise.reject('Duplicate UserName');
-		}
-	};
-
-	const createUser = () => {
-		return User.create(userid, name, schoolnum);
-	};
-
-	const saveUser = (user) => {
-		_user = user;
-		winston.info('User Added');
-	};
-
-	const respond = () => {
-		res.json({
-			retult: true
-		});
-	};
-
-	const createHash = (salt) => {
-		return new Promise((resove, reject) => {
-			crypto.pbkdf2(salt, pass, iteritation, bits, digest, (err, key) => {
-				if (err){
-					reject(err);
+	const createSalt = (index) => {
+		return new Promise((resolve, reject) => {
+			crypto.randomBytes(saltBits , (err, buf) => {
+				if (err) {
+					reject({
+						status : 500,
+						error : err
+					});
+					return;
 				}
-				resove([
-					salt.toString('hex'),
-					key.toString('hex')]);
+				salts[index] = buf.toString('hex');
+				resolve();			
 			});
 		});
 	};
 
-	const updateUser = (salt, pass) => {
-		_user.updatePass(salt, pass);
-		winston.info('Userinfo Updated');
-	};
-
-	const onError = (err) => {
-		res.status(500).json({
-			result: false,
-			error: err
+	const createHash = (index) => {
+		return new Promise((resolve, reject) => {
+			crypto.pbkdf2(Buffer.from(salts[index], 'hex'), pass, iteritations, bits, digest, (err, hash) => {
+				if (err){
+					reject({
+						status : 500,
+						error : err
+					});
+				}
+				hashes[index] = hash.toString('hex');
+				resolve();
+			});
 		});
-		winston.error('Internal Server Error on User Signup : ' + err);
 	};
 
-	User.findByUserID(userid)
-		.then(checkID)
-		.then(findName)
-		.then(checkName)
-		.then(createUser)
-		.then(saveUser)
+	const respond = () => {
+		res.status(200).json({
+			result: true
+		});
+	};
+
+	const onError = (info) => {
+		res.status(info.status).json({
+			result: false,
+			error: info.error
+		});
+
+		winston.error('User Signup Internal Error : ' + info.error);
+	};
+
+	User.checkDuplicateUserID(useridHash)
+		.then(() => createSalt(0))
+		.then(() => createSalt(1))
+		.then(() => createHash(0))
+		.then(() => createHash(1))
+		.then(() => User.create(useridHash, salts, hashes, schoolnum))
 		.then(respond)
-		.then(() => crypto.randomBytes(req.app.locals.config.salt.bits))
-		.then(createHash)
-		.spread(updateUser)
 		.catch(onError);
 });
 

@@ -13,6 +13,8 @@ router.get('/view/', (req, res) => {
 		res.render('view/index');
 	}*/
 	res.render('view/index', {
+		
+
 		timetable : 
 			[
 				{

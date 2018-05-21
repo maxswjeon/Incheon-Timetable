@@ -9,6 +9,7 @@ try {
 	fs.accessSync(path.join(global.rootPath, 'logs'), fs.constants.R_OK | fs.constants.W_OK);
 }
 catch (err) {
+	winston.warn('No Log Folder Found, Making Dirctory');
 	fs.mkdirSync(path.join(global.rootPath, 'logs'));
 }
 

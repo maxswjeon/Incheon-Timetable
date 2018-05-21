@@ -16,7 +16,7 @@
 				<p>수업학점 : <strong name="total_point">0</strong>점</p>
 				<ul id="lecture_list">
 					<% for(let i = 0; i < lecture.length; ++i) { %>
-						<li class="lecture_item" onClick="ToggleItem(this)">
+						<li class="lecture_item<%= lecture[i].selected ? ' highlight' : '' %>" onClick="ToggleItem(this)">
 							<p class="lecture_name"><%= lecture[i].name %></p>
 							<p class="lecture_text">과목코드</p><p class="lecture_code"><%= lecture[i].code %></p>
 							<p class="lecture_text">학점</p><p class="lecture_point"><%= lecture[i].point %></p>
@@ -27,6 +27,8 @@
 				<h3>현재 신청된 강의</h3>
 				<p>수업시수 : <strong name="total_time">0</strong>시간</p>
 				<p>수업학점 : <strong name="total_point">0</strong>점</p>
+				<input class="input" type="hidden" value="<%= uuid1 %>" name="uuid1">
+				<input class="input" type="hidden" value="<%= uuid2 %>" name="uuid2">
 				<input type="submit" class="button" onClick="Save()">
 				<% include ../global/footer %>
 			</div>

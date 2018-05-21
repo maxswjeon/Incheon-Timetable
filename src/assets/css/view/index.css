@@ -8,7 +8,15 @@ th, td {
 }
 .table_title {
 	width: 20%;
-	font-size : 0.95em;
+	font-size : 1em;
+}
+.table_period {
+	margin : 2.5px 0;
+	font-size : 1em;
+}
+.table_time {
+	margin : 2.5px 0;
+	font-size : 0.865em;
 }
 .table_content {
 	width: 16%;

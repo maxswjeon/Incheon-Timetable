@@ -1,4 +1,4 @@
-//Node JS Common modules
+//Node JS Core Modules
 const path = require('path');
 const fs = require('fs');
 
@@ -81,7 +81,6 @@ function ImportRoutes() {
 
 	routes.user = {};
 	routes.user.login = require('../routes/user/login');
-	routes.user.query = require('../routes/user/query');
 	routes.user.signup = require('../routes/user/signup');
 
 	return routes;

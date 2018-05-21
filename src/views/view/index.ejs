@@ -25,8 +25,8 @@
 						<% for (var i = 0; i < timetable.length; ++i) { %>
 						<tr>
 							<th class="table_title">
-								<%= timetable[i].period %>교시<br>
-								<%= timetable[i].time %>
+								<p class="table_period"><%= timetable[i].period %>교시</p>
+								<p class="table_time"><%= timetable[i].time %></p>
 							</th>
 							<th class="<%= timetable[i].mon.style %> table_content">
 								<%= timetable[i].mon.name %><br>

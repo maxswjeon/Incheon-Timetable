@@ -12,6 +12,7 @@ const session = require('express-session');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const methodOverride = require('method-override');
 const ejs = require('ejs');
 
 //Express JS Configureation
@@ -97,10 +98,15 @@ function SetSessionModule(_secret) {
  * Default is Configured in config.secret.json 
  */
 function SetParser() {
-	//Logger And Parsers
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(cookieParser());
+	
+	// override with different headers; last one takes precedence
+	app.use(methodOverride('X-HTTP-Method'));			// Microsoft
+	app.use(methodOverride('X-HTTP-Method-Override'));	// Google/GData
+	app.use(methodOverride('X-Method-Override'));		// IBM
+	app.use(methodOverride('_method'));					// HTML Form
 }
 
 /**

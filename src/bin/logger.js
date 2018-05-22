@@ -4,6 +4,10 @@ const fs = require('fs');
 //Logger modules
 const winston = require('winston');
 
+/**
+ * Check Log Folder and Create it if doesn't Exist.  
+ * Configure Logger Modules
+ */
 function Init() {
 	//Check Log Folder and Create it if doesn't Exist
 	try {

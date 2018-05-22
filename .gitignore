@@ -60,3 +60,6 @@ typings/
 # data directories
 data/
 src/data/
+
+# UserSecret Data File
+*.csv

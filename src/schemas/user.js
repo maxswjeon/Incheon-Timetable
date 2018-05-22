@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const User = new Schema({
+	secret : String,
 	userid : String,
 	salts : [String],
 	pass : [String],
@@ -15,20 +16,47 @@ const User = new Schema({
 	lectures : [String]
 });
 
-User.statics.create = function(userid, salts, pass, schoolnum) {
-	const user = new this({
-		userid,
-		salts,
-		pass,
-		schoolnum,
-		lectures : null
-	});
+User.statics.initSecret = function(schoolnum, secret) {
+	//Save As Hash
+	const sha512Generator = crypto.createHash('sha512');
+	sha512Generator.update(secret);
+	const secretHash = sha512Generator.digest('hex');
+
+	const user = new this();
+	user.schoolnum = schoolnum;
+	user.secret = secretHash;
+
+	user.userid = null;
+	user.salts = null;
+	user.pass = null;
+	user.lectures = null;
+
 	return user.save();
+};
+
+User.statics.create = function(userid, salts, pass, schoolnum) {
+	return this.findOne({ schoolnum })
+		.then((user) => {
+			user.userid = userid;
+			user.salts = salts;
+			user.pass = pass;
+			user.lectures = null;
+			user.secret = null;
+
+			return user;
+		})
+		.then((user) => user.save());
 };
 
 User.statics.findByUserID = function(userid) {
 	return this.findOne({
 		userid
+	}).exec();
+};
+
+User.statics.findBySchoolNum = function(schoolnum) {
+	return this.findOne({
+		schoolnum
 	}).exec();
 };
 
@@ -46,7 +74,7 @@ User.statics.checkDuplicateUserID = function(userid) {
 			if (users.length !== 0) {
 				reject({
 					status : 400,
-					error : err
+					error : 'Duplicate User ID Found'
 				});
 				return;
 			}
@@ -54,7 +82,6 @@ User.statics.checkDuplicateUserID = function(userid) {
 			resolve();
 		});
 	});
-	
 };
 
 User.methods.updatePass = function(pass) {

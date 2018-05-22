@@ -44,11 +44,22 @@ function InitFolder(folder) {
 	}
 }
 
+/**
+ * Creates Internal `src/data` folder if doesn't Exist.  
+ * Delete All Files in `src/data`
+ */
 function Init() {
 	CreateFolder();
 	InitFolder('src/data/');
 }
 
+/**
+ * Parse Excel File (.xlsx) to JSON file(.json)
+ * 
+ * @param {String} filePath Original Excel File Path. Relative to root Folder.
+ * @param {Number} sheetIndex Index Of Sheet to Parse
+ * @param {String} name File Name to Save Parsed File. Needed to After Access.
+ */
 function Parse(filePath, sheetIndex, name) {
 	name += '.json';
 

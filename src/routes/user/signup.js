@@ -16,15 +16,54 @@ const User = require(path.join(global.rootPath, 'src/schemas/user'));
 
 router.post('/user/signup', (req, res) => {
 
-	const { userid, pass, schoolnum } = req.body;
+	const session = req.session;
+	const { userid, pass, schoolnum, secret, uuid1, uuid2 } = req.body;
+
+	if (session.uuid1 !== uuid1 || session.uuid2 !== uuid2) {
+		delete session.uuid1;
+		delete session.uuid2;
+		
+		res.status(403)
+			.send({ result : false, error : 'UUID Does Not Match'});
+	
+		winston.error('User Signup Authentication Error : ' + 'UUID Doesn Not Match');
+
+		return;
+	}
 
 	const salts = Array(2);
 	const hashes = Array(2);
 
 	//Save As Hash
-	const sha512Generator = crypto.createHash('sha512');
-	sha512Generator.update(userid);
-	const useridHash = sha512Generator.digest('hex');
+	const userIDHashGenerator = crypto.createHash('sha512');
+	userIDHashGenerator.update(userid);
+	const useridHash = userIDHashGenerator.digest('hex');
+
+	const secretHashGenerator = crypto.createHash('sha512');
+	secretHashGenerator.update(secret);
+	const secretHash = secretHashGenerator.digest('hex');
+
+	const checkRegistered = (user) => {
+		return new Promise((resolve, reject) => {
+			if (user.secret === null) {
+				reject({
+					status : 400,
+					error : 'User Already Registered'
+				});
+				return;
+			}
+
+			if (user.secret !== secretHash) {
+				reject({
+					status : 401,
+					error : 'Secret Code Mismatch'
+				});
+				return;
+			}
+
+			resolve();
+		});
+	};
 
 	const createSalt = (index) => {
 		return new Promise((resolve, reject) => {
@@ -72,7 +111,9 @@ router.post('/user/signup', (req, res) => {
 		winston.error('User Signup Internal Error : ' + info.error);
 	};
 
-	User.checkDuplicateUserID(useridHash)
+	User.findBySchoolNum(schoolnum)
+		.then(checkRegistered)
+		.then(() => User.checkDuplicateUserID(useridHash))
 		.then(() => createSalt(0))
 		.then(() => createSalt(1))
 		.then(() => createHash(0))

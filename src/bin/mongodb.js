@@ -5,14 +5,18 @@ const winston = require('winston');
 const mongoose = require('mongoose');
 const autoinc = require('mongoose-auto-increment');
 
-//Mongoose Configuration
-const db = mongoose.connection;
-db.on('error', winston.error);
-db.once('open', () => {
-	winston.info('Connected to mongod Server');
+function Connect() {
+	//Mongoose Configuration
+	const db = mongoose.connection;
+	db.on('error', winston.error);
+	db.once('open', () => {
+		winston.info('Connected to mongod Server');
+		autoinc.initialize(db);
+	});
+	mongoose.connect(global.secret.mongodb.url);
 	autoinc.initialize(db);
-});
-mongoose.connect(global.secret.mongodb.url);
-autoinc.initialize(db);
+}
 
-module.exports = db;
+module.exports = {
+	connect : Connect
+};

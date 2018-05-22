@@ -1,32 +1,40 @@
 const config = require('./bin/config');
+const logger = require('./bin/logger');
 const express = require('./bin/express');
 const mongodb = require('./bin/mongodb');
-const winston = require('./bin/logger');
-const eventHandler = require('./bin/eventHandler');
 
 const dataLoader = require('./bin/dataLoader');
 
+//Parse Config Files And Save it to Global Variables
+config.parse();
+
+//Set Up Logger
+logger.init();
+
+//Set Up DataParser
+dataLoader.init();
+dataLoader.parse('data/grade2.xlsx', 0, 'grade2_enroll');
+dataLoader.parse('data/grade2.xlsx', 1, 'grade2_result');
+dataLoader.parse('data/grade3.xlsx', 0, 'grade3_enroll');
+dataLoader.parse('data/grade3.xlsx', 1, 'grade3_result');
+
 //Configuring ExpressJS
-express.setRenderer();
-express.setRenderFolder('src/views');
-express.setAssetFolder('src/assets');
+{
+	express.setRenderer();
+	express.setRenderFolder('src/views');
+	express.setAssetFolder('src/assets');
 
-express.setSecurityModule();
+	express.setSecurityModule();
 
-express.setSessionMoudle();
+	express.setSessionMoudle();
 
-express.setParser();
-express.setLogger();
+	express.setParser();
+	express.setLogger();
 
-express.setAllRoutes('src/routes');
+	express.setAllRoutes('src/routes');
 
-express.setErrorHandlers();
-express.start();
+	express.setErrorHandlers();
+	express.start();
+}
 
-module.exports = {
-	config : config,
-	mongodb : mongodb,
-	logger : winston,
-	dataSheet : dataLoader,
-	events : eventHandler
-};
+mongodb.connect();

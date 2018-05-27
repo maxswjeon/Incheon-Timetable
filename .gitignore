@@ -63,3 +63,9 @@ src/data/
 
 # UserSecret Data File
 *.csv
+
+# VScode
+.vscode/
+
+# Secret Config files
+config/config.secret.js

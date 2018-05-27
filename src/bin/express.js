@@ -61,7 +61,12 @@ function SetSecurityModule() {
 	//Security
 	app.use(helmet({
 		hsts : false,
-		expectCt : true
+		expectCt : true,
+		contentSecurityPolicy : {
+			directives: {
+				fontSrc: ['fonts.gstatic.com', 'data:']
+			}
+		}
 	}));
 	app.disable('x-powered-by');
 }

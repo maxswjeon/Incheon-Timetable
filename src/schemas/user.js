@@ -29,7 +29,7 @@ User.statics.initSecret = function(schoolnum, secret) {
 	user.userid = null;
 	user.salts = null;
 	user.pass = null;
-	user.lectures = null;
+	user.lectures = Array();
 
 	return user.save();
 };
@@ -40,7 +40,7 @@ User.statics.create = function(userid, salts, pass, schoolnum) {
 			user.userid = userid;
 			user.salts = salts;
 			user.pass = pass;
-			user.lectures = null;
+			user.lectures = Array();
 			user.secret = null;
 
 			return user;
@@ -92,6 +92,11 @@ User.methods.updatePass = function(pass) {
 		this.pass[i] = crypto.pbkdf2Sync(pass, this.salt[i], iteritations, bits, digest);
 	}
 
+	return this.save();
+};
+
+User.methods.updateLecture = function(lectures) {
+	this.lectures = lectures;
 	return this.save();
 };
 

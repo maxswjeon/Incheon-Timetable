@@ -1,5 +1,3 @@
-const Promise = require('bluebird');
-
 //Logger modules
 const winston = require('winston');
 

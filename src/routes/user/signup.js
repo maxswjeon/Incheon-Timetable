@@ -31,6 +31,15 @@ router.post('/user/signup', (req, res) => {
 		return;
 	}
 
+	if (!userid || !pass || !schoolnum || !secret) {
+		res.status(400)
+			.send({ result : false, error : 'Some Params Not Sent'});
+	
+		winston.error('User Signup Authentication Error : ' + 'Some Params Not Sent');
+
+		return;
+	}
+
 	const salts = Array(2);
 	const hashes = Array(2);
 

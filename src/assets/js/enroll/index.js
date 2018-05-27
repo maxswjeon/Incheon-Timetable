@@ -60,8 +60,6 @@ function Save() {
 	if (!submitFlag) {
 		submitFlag = true;
 
-		document.getElementById('submit').enabled = false;
-
 		var uuid1 = document.getElementsByName('uuid1')[0].value;
 		var uuid2 = document.getElementsByName('uuid2')[0].value;
 
@@ -69,7 +67,7 @@ function Save() {
 
 		lecture.forEach(element => {
 			if (element.selected) {
-				json.push(selectedLecture)
+				selectedLecture.push(element)
 			}
 		});
 
@@ -92,6 +90,7 @@ function Save() {
 function onQueryFinish() {
 	console.log(xmlHttp.readyState);
 	if (xmlHttp.readyState == 4) {
+		window.scrollTo(0,0);
 		window.location.reload();
 	}
 }

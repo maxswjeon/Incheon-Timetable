@@ -30,10 +30,10 @@ function makeid() {
 	return text;
 }
 
-const file = fs.createWriteStream('./UserSecret.csv', { flags : 'a' });
+const file = fs.createWriteStream('./UserSecret.csv', {flags: 'w'});
 const date = new Date();
 
-file.write('Date,' + date + '\n');
+file.write('' + date + '\n');
 
 async function Init() {
 	try {
@@ -72,4 +72,11 @@ async function Init() {
 	}
 }
 
-Init();
+const isCLI = !module.parent;
+if (isCLI) {
+	Init();
+}
+
+module.exports = {
+	init : Init,
+};

@@ -11,8 +11,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
 	const { session } = req;
 
-	const uuid1 = uuid.v1();
-	const uuid2 = uuid.v4();
+	const uuid1 = uuid.v1().replace(/-/g, '');
+	const uuid2 = uuid.v4().replace(/-/g, '');
 
 	session.uuid1 = uuid1;
 	session.uuid2 = uuid2;

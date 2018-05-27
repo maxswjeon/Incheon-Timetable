@@ -35,6 +35,26 @@ router.post('/user/login', (req, res) => {
 	sha512Generator.update(userid);
 	const useridHash = sha512Generator.digest('hex');
 
+	const checkUser = (user) => {
+		return new Promise((resolve, reject) => {
+			if (user === null) {
+				reject({
+					status : 403,
+					error : 'User Not Registered'
+				});
+				return;
+			}
+			else if(user.userid === null) {
+				reject({
+					status : 403,
+					error : 'User Not Registered'
+				});
+				return;
+			}
+			resolve(user);
+		});
+	};
+
 	const createHash = (user, index) => {
 		return new Promise((resolve, reject) => {
 			crypto.pbkdf2(Buffer.from(user.salts[index], 'hex'), pass, iteritations, bits, digest, (err, hash) => {
@@ -83,6 +103,7 @@ router.post('/user/login', (req, res) => {
 	};
 
 	User.findByUserID(useridHash)
+		.then(checkUser)
 		.then((user) => createHash(user, 0))
 		.then((user) => createHash(user, 1))
 		.then(respond)

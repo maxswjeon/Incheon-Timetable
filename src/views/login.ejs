@@ -10,18 +10,31 @@
 	</head>
 	<body>
 		<div id="wrap">
-			<div id="image_container"></div>
-			<div id="login_form">
-				<h2 id="login_title">
-					인천과학예술영재학교<br>
-					시간표 작성 서비스
-				</h2>
-				<input class="input" type="text" placeholder="ID" name="id">
-				<input class="input" type="password" placeholder="PW" name="pw">
-				<input class="input" type="hidden" value="<%= uuid1 %>" name="uuid1">
-				<input class="input" type="hidden" value="<%= uuid2 %>" name="uuid2">
-				<input id="submit" class="button" type="submit" value="Login" onclick="Login()">
-				<%- errormsg  %>
+			<div id="container">
+				<form name="login" action="javascript:void(0);" method="post" onsubmit="return Login();">
+					<h2 class="title">
+						인천과학예술영재학교<br>
+						시간표 작성 서비스
+					</h2>
+					<input type="text" name="id" placeholder="아이디" autocomplete="username">
+					<input type="password" name="pass" placeholder="비밀번호" autocomplete="current-password">
+					<input type="hidden" name="uuid1" value="<%= uuid1 %>">
+					<input type="hidden" name="uuid2" value="<%= uuid2 %>">
+					<input type="submit" class="button" value="Login">
+					<a class="switch" href="#signup">회원가입</a>
+					<%- errormsg  %>
+				</form>
+				<form name="signup" action="javascript:void(0);" method="post" class="hidden" onsubmit="return SignUp();">
+					<h2 class="title">회원가입</h2>
+					<input type="text" name="schoolnum" placeholder="학번">
+					<input type="text" name="id" placeholder="아이디" autocomplete="username">
+					<input type="password" name="pass" placeholder="비밀번호" autocomplete="new-password">
+					<input type="text" name="secret" placeholder="비밀코드">
+					<input type="submit" class="button" value="회원가입">
+					<input type="hidden" name="uuid1" value="<%= uuid1 %>">
+					<input type="hidden" name="uuid2" value="<%= uuid2 %>">
+					<a class="switch" href="#">기존 계정으로 로그인</a>
+				</form>
 			</div>
 			<div id="footer">
 				<p class="copyright">

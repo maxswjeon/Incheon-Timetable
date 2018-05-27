@@ -1,13 +1,11 @@
+html, body {
+	width: 100%;
+	height: 100%;
+}
 #wrap {
 	width:100vw;
 	height: 100%;
 	display: table;
-	position: relative;
-	background-color: #F5F5F5;
-}
-#image_container{
-	width:100%;
-	height:100%;
 	position: relative;
 	background: url("/img/background.png") no-repeat center center fixed;
 	-webkit-background-size: cover;
@@ -15,29 +13,58 @@
     -o-background-size: cover;
     background-size: cover;
 }
-#login_form{
-	position: absolute;
-	top: 150px;
+#container {
+	display: table-cell;
+	vertical-align: middle;
+	margin: auto;
+}
+form{
+	margin: auto;
+	width: 300px;
 	padding: 25px;
-	border-radius: 10px;
+	border: 1px #D5D5D5 solid;
+	border-radius: 15px;
 	background-color: rgba(255,255,255,0.7);
 }
-#footer{
-	position: absolute;
-	width: 100%;
-	bottom:0px;
-	padding: 10px;
-	box-sizing: border-box;
-	background-color: rgba(255,255,255,0.7);
-}
-#login_title{
+.title{
 	margin: 0 0 10px 0;
 	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+}
+input {
+	width: 100%;
+	height: 25px;
+	margin : 2px 0;
+	border: 1px #D5D5D5 solid;
+	box-sizing: border-box;
+}
+#footer {
+	background-color: rgba(255,255,255,0.7);
+    padding: 15px;
+	position: absolute;
+	left: 0px;
+    bottom: 0px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.copyright {
+	font-size: 0.75em;
+	margin: 0;
 }
 .input{
 	width: 100%;
 	padding: 0;
 	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+}
+.switch {
+	display: block;
+	color:black;
+	text-decoration: none;
+	margin: 15px 0 0 0;
+	cursor: pointer;
+	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+}
+.hidden {
+	display: none;
 }
 .button{
 	width: 100%;
@@ -47,9 +74,6 @@
 	font-size: 1em;
 	margin: 5px 0 0 0;
 	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
-}
-.copyright {
-	font-size: 0.75em;
 }
 #error {
 	font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;

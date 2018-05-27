@@ -15,8 +15,12 @@ Post.statics.create = function(title, content) {
 	return post.save();
 };
 
+Post.statics.getAllPosts = function() {
+	return this.find({}).exec();
+};
+
 Post.statics.findByPostID = function(_id) {
-	return this.find({
+	return this.findOne({
 		_id
 	}).exec();
 };

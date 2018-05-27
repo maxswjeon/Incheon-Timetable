@@ -16,16 +16,13 @@ uuid.v1 = require('uuid/v1');
 uuid.v4 = require('uuid/v4');
 
 router.get('/enroll', (req, res) => {
-	//const { session } = req;
-
-	/*if (!session.authenticated) {
-		res.redirect('/');
-	}
-	else {
-		res.render('enroll/index');
-	}*/
 
 	const { session } = req;
+
+	if (!session.userid) {
+		res.redirect('/');
+		return;
+	}
 
 	const uuid1 = uuid.v1().replace(/-/g, '');
 	const uuid2 = uuid.v4().replace(/-/g, '');

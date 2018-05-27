@@ -10,36 +10,11 @@
 				<% include ./global/header %>
 				<h2 class="subtitle">공지사항</h2>
 				<ul class="board_list">
-					<li class="board_item">
-						<a href="/notice?index=0" class="board_link">준비중입니다</a>
-					</li>
-					<li class="board_item">
-						<a href="/notice?index=0" class="board_link">준비중입니다</a>
-					</li>
-					<li class="board_item">
-						<a href="/notice?index=0" class="board_link">준비중입니다</a>
-					</li>
-					<li class="board_item">
-						<a href="/notice?index=0" class="board_link">준비중입니다</a>
-					</li>
-					<li class="board_item">
-						<a href="/notice?index=0" class="board_link">준비중입니다</a>
-					</li>
-					<li class="board_item">
-						<a href="/notice?index=0" class="board_link">준비중입니다</a>
-					</li>
-					<li class="board_item">
-						<a href="/notice?index=0" class="board_link">준비중입니다</a>
-					</li>
-					<li class="board_item">
-						<a href="/notice?index=0" class="board_link">준비중입니다</a>
-					</li>
-					<li class="board_item">
-						<a href="/notice?index=0" class="board_link">준비중입니다</a>
-					</li>
-					<li class="board_item">
-						<a href="/notice?index=0" class="board_link">준비중입니다</a>
-					</li>
+					<% posts.forEach((post) => { %>
+						<li class="board_item">
+							<a href="/notice?id=<%= post._id %>" class="board_link"><%= post.title %></a>
+						</li>
+					<% }); %>
 				</ul>
 				<% include ./global/footer %>
 			</div>

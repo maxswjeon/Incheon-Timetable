@@ -60,8 +60,15 @@ function SetAssetFolder(assetPath) {
 function SetSecurityModule() {
 	//Security
 	app.use(helmet({
+		//HSTS (Http Strict Trasport Security) should be enabled in Apache/Nginx Layer.
 		hsts : false,
+
+		//Should be set to true only if
+		//1. Apache/Nginx serves an sct (Certificate Trasparancy Log)
+		//2. Certificate Includes an Certificate Transparancy Log in X.509 Extension
 		expectCt : true,
+
+		//Enable fonts.gstatics.com and data: domain for supporting Google Web Fonts
 		contentSecurityPolicy : {
 			directives: {
 				fontSrc: ['fonts.gstatic.com', 'data:']
